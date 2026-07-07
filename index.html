@@ -11,6 +11,10 @@
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         background: #0c0c0c;
@@ -32,7 +36,7 @@
         left: 0;
         right: 0;
         z-index: 1000;
-        background: rgba(12, 12, 12, 0.8);
+        background: rgba(12, 12, 12, 0.95);
         backdrop-filter: blur(10px);
         padding: 20px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -44,12 +48,17 @@
         align-items: center;
         max-width: 1400px;
         margin: 0 auto;
+        padding: 0 20px;
       }
 
       .logo {
         font-size: 24px;
-        font-weight: 600;
+        font-weight: 700;
         letter-spacing: -0.5px;
+        background: linear-gradient(135deg, #ffffff, #b3b3b3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .nav-links {
@@ -63,10 +72,22 @@
         text-decoration: none;
         font-size: 16px;
         transition: opacity 0.3s;
+        position: relative;
       }
 
-      .nav-links a:hover {
-        opacity: 0.7;
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #ffffff;
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
       }
 
       /* Hero Section */
@@ -77,20 +98,13 @@
         align-items: center;
         position: relative;
         overflow: hidden;
-      }
-
-      .hero-bg {
-        position: absolute;
-        inset: 0;
-        opacity: 0.3;
-        object-fit: cover;
-        z-index: 0;
+        background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
       }
 
       .hero-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(20, 20, 20, 0.5));
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(20, 20, 20, 0.3));
         z-index: 1;
       }
 
@@ -98,6 +112,18 @@
         position: relative;
         z-index: 2;
         max-width: 800px;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       .hero h1 {
@@ -106,6 +132,10 @@
         margin-bottom: 30px;
         font-weight: 700;
         letter-spacing: -1px;
+        background: linear-gradient(135deg, #ffffff, #b3b3b3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .hero p {
@@ -141,6 +171,7 @@
       .btn-primary:hover {
         opacity: 0.9;
         transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
       }
 
       .btn-secondary {
@@ -151,6 +182,7 @@
 
       .btn-secondary:hover {
         background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
       }
 
       /* Video Section */
@@ -159,18 +191,31 @@
         background: #0c0c0c;
       }
 
+      .video-section h2 {
+        font-size: 42px;
+        margin-bottom: 60px;
+        text-align: center;
+        background: linear-gradient(135deg, #ffffff, #b3b3b3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
       .video-container {
         margin-bottom: 60px;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        background: #1a1a1a;
+        aspect-ratio: 16 / 9;
       }
 
       .video-container video {
         width: 100%;
-        height: auto;
+        height: 100%;
         display: block;
         background: #000;
+        object-fit: cover;
       }
 
       .video-info {
@@ -180,6 +225,7 @@
       .video-info h3 {
         font-size: 28px;
         margin-bottom: 15px;
+        color: #ffffff;
       }
 
       .video-info p {
@@ -191,12 +237,17 @@
       /* Projects Grid */
       .projects {
         padding: 100px 0;
+        background: #0c0c0c;
       }
 
       .projects h2 {
         font-size: 42px;
         margin-bottom: 60px;
         text-align: center;
+        background: linear-gradient(135deg, #ffffff, #b3b3b3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .projects-grid {
@@ -212,17 +263,20 @@
         border-radius: 20px;
         transition: all 0.3s;
         cursor: pointer;
+        backdrop-filter: blur(10px);
       }
 
       .project-card:hover {
         background: rgba(255, 255, 255, 0.1);
         border-color: rgba(255, 255, 255, 0.3);
         transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
       }
 
       .project-card h3 {
         font-size: 24px;
         margin-bottom: 15px;
+        color: #ffffff;
       }
 
       .project-card p {
@@ -238,6 +292,32 @@
         font-size: 12px;
         margin-right: 8px;
         margin-bottom: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      /* Contact Section */
+      .contact {
+        padding: 100px 0;
+        text-align: center;
+        background: linear-gradient(135deg, #0c0c0c, #1a1a1a);
+      }
+
+      .contact h2 {
+        font-size: 42px;
+        margin-bottom: 40px;
+        background: linear-gradient(135deg, #ffffff, #b3b3b3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .contact p {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 40px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       /* Footer */
@@ -254,17 +334,22 @@
         justify-content: center;
         gap: 30px;
         margin-top: 30px;
+        flex-wrap: wrap;
       }
 
       .social-links a {
         color: #ffffff;
         text-decoration: none;
         font-size: 14px;
-        transition: opacity 0.3s;
+        transition: all 0.3s;
+        padding: 8px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
       }
 
       .social-links a:hover {
-        opacity: 0.7;
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #ffffff;
       }
 
       /* Responsive */
@@ -279,6 +364,7 @@
 
         .nav-links {
           gap: 20px;
+          font-size: 14px;
         }
 
         .buttons {
@@ -289,6 +375,30 @@
           width: 100%;
           text-align: center;
         }
+
+        .projects h2,
+        .video-section h2,
+        .contact h2 {
+          font-size: 32px;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Loading animation */
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .loading {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
       }
     </style>
   </head>
@@ -300,6 +410,7 @@
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -307,17 +418,14 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-      <video class="hero-bg" autoplay muted loop playsinline>
-        <source src="https://raw.githubusercontent.com/uiBashar/uibashar.com/main/download.mp4" type="video/mp4">
-      </video>
       <div class="hero-overlay"></div>
       <div class="container">
         <div class="hero-content">
           <h1>Create Beautiful Digital Experiences</h1>
           <p>UI/UX Designer & Creative Developer crafting interactive, meaningful designs that users love.</p>
           <div class="buttons">
-            <button class="btn btn-primary">Get In Touch</button>
-            <button class="btn btn-secondary">View My Work</button>
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            <a href="#portfolio" class="btn btn-secondary">View My Work</a>
           </div>
         </div>
       </div>
@@ -326,11 +434,11 @@
     <!-- Featured Video Section -->
     <section id="portfolio" class="video-section">
       <div class="container">
-        <h2 style="font-size: 42px; margin-bottom: 60px; text-align: center;">Featured Project</h2>
+        <h2>Featured Project</h2>
         
         <div class="video-container">
-          <video width="100%" controls playsinline>
-            <source src="https://raw.githubusercontent.com/uiBashar/uibashar.com/main/Meditation_app_interface_particles_202607030044.mp4" type="video/mp4">
+          <video playsinline controls>
+            <source src="https://github.com/uiBashar/uibashar.com/raw/main/assets/videos/meditation-app.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
@@ -386,20 +494,26 @@
               <span class="tag">UX</span>
             </div>
           </div>
+
+          <div class="project-card">
+            <h3>Web Design Explorations</h3>
+            <p>Collection of modern web design concepts and interactive prototypes.</p>
+            <div>
+              <span class="tag">Web Design</span>
+              <span class="tag">Prototyping</span>
+              <span class="tag">UI</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" style="padding: 100px 0; text-align: center;">
+    <section id="contact" class="contact">
       <div class="container">
-        <h2 style="font-size: 42px; margin-bottom: 40px;">Let's Work Together</h2>
-        <p style="font-size: 18px; color: rgba(255, 255, 255, 0.7); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
-          Have a project in mind? I'd love to hear about it. Let's create something amazing together.
-        </p>
-        <button class="btn btn-primary" style="margin-bottom: 60px;">
-          <a href="mailto:uibashar.design@gmail.com" style="color: #0c0c0c; text-decoration: none;">Email Me</a>
-        </button>
+        <h2>Let's Work Together</h2>
+        <p>Have a project in mind? I'd love to hear about it. Let's create something amazing together.</p>
+        <a href="mailto:uibashar.design@gmail.com" class="btn btn-primary">Email Me</a>
       </div>
     </section>
 
@@ -408,9 +522,10 @@
       <div class="container">
         <p>&copy; 2026 uiBashar. All rights reserved.</p>
         <div class="social-links">
-          <a href="https://linkedin.com/in/uibashar" target="_blank">LinkedIn</a>
-          <a href="https://dribbble.com/uiBashar" target="_blank">Dribbble</a>
-          <a href="https://instagram.com/ui_bashar" target="_blank">Instagram</a>
+          <a href="https://linkedin.com/in/uibashar" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://dribbble.com/uiBashar" target="_blank" rel="noopener noreferrer">Dribbble</a>
+          <a href="https://instagram.com/ui_bashar" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://github.com/uiBashar" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
     </footer>
@@ -422,7 +537,29 @@
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Add active nav link styling
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-links a');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.style.opacity = '0.7';
+          if (link.getAttribute('href').slice(1) === current) {
+            link.style.opacity = '1';
           }
         });
       });

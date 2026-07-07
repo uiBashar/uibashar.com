@@ -1,0 +1,18 @@
+# Jekyll configuration
+title: uiBashar - UI/UX Designer & Developer
+description: Portfolio showcasing UI/UX design and creative development projects
+url: https://uibashar.com
+
+# Build settings
+theme: null
+plugins: []
+
+# Markdown processing
+markdown: kramdown
+
+# Ignore files
+exclude:
+  - README.md
+  - .gitignore
+  - node_modules
+  - .git
